@@ -1,3 +1,4 @@
+<img src="https://raw.githubusercontent.com/RetributionByRevenue/json_easy2use/main/logo.png">
 As seen on Crates.io: https://crates.io/crates/json_easy2use <br>
 Use Rust's JSON more easily like python's dict and javascript JSON. includes set, append, get, delete, and more
 # How this works?
