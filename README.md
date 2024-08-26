@@ -5,16 +5,16 @@ I made a series ofcustom macro's for rust Serde JSON crate. This will make it ea
 
 Let's take a look how this works. 
 
-consider the following
-<code>
-    root_append!(mydict, json!({"new_root_key": "new_root_value"}));
+consider the following:
+
+    `root_append!(mydict, json!({"new_root_key": "new_root_value"}));`
  
     // Setting values
-    set!(mydict, "level1.level2.level4" => [1,2,3]);
+    `set!(mydict, "level1.level2.level4" => [1,2,3]);`
 
     // Appending values
-    append!(mydict, "level1.level2" => json!({"level5": "value_d"}));
+    `append!(mydict, "level1.level2" => json!({"level5": "value_d"}));`
 
     // Deleting values
-    delete!(mydict, "level1.level2.level3b");
-</code>
+    `delete!(mydict, "level1.level2.level3b");`
+
