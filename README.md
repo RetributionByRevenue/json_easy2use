@@ -1,3 +1,4 @@
+As seen on Crates.io: https://crates.io/crates/json_easy2use <br>
 Use Rust's JSON more easily like python's dict and javascript JSON. includes set, append, get, delete, and more
 # How this works?
 I made a series of custom macro's for Rust's Serde JSON crate. This will make it easier to work with JSON if you are familiar with Python or JavaScript. 
