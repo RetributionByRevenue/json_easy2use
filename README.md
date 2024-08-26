@@ -3,6 +3,8 @@ Use Rust's JSON more easily like python's dict and javascript JSON. includes set
 # How this works?
 I made a series of custom macro's for Rust's Serde JSON crate. This will make it easier to work with JSON if you are familiar with Python or JavaScript. 
 
+# Now added support for Saving and Loading <3
+
 Let's take a look how this works. 
 
 consider the following:
@@ -21,10 +23,18 @@ root_append!(mydict, json!({"new_root_key": "new_root_value"}));
 
 //Getting a value
 get!(mydict, "level1.level2")
+
+//Loading a JSON file
+load!(mydict, "./test.db");
+
+//Saving a JSON file
+save!(mydict, "./test.db");
 </pre>
 
 `set!`, `append!`,`delete!`, `get!`, and `root_append!` are macros avalible to use. <br>
-Drill down to a specifc key-value entery like `level1.level2.level3b` for easy usage.   
+Drill down to a specifc key-value entery like `level1.level2.level3b` for easy usage. <br>
+Now supporting pseudo database like functionality with `load!` and `save!`. 
+
 
 # Example Usage
 in a new rust project,
@@ -69,7 +79,11 @@ fn main() {
     // Print the final JSON structure
     println!("Output");
     println!("{}", mydict);
+
+    //Saving the JSON to file
+    save!(mydict, "./test.db");
 }
+
 </pre>
 the output from this code is the following:
 <pre>
@@ -96,3 +110,5 @@ Output:
   "new_root_key": "new_root_value"
 }
 </pre>
+
+and `test.db` created in the current directory.
