@@ -1,7 +1,6 @@
-# json_easy2use
 Use Rust's JSON more easily like python's dict and javascript JSON. includes set, append, get, delete, and more
-#How this works?
-I made a series ofcustom macro's for rust Serde JSON crate. This will make it easier to work with JSON if you are farmiliar with Python or JavaScript. 
+# How this works?
+I made a series of custom macro's for Rust's Serde JSON crate. This will make it easier to work with JSON if you are familiar with Python or JavaScript. 
 
 Let's take a look how this works. 
 
@@ -24,6 +23,7 @@ get!(mydict, "level1.level2")
 </pre>
 
 `set!`, `append!`,`delete!`, `get!`, and `root_append!` are macros avalible to use.
+Drill down to a specifc key-value entery like `level1.level2.level3b` for easy usage.   
 
 # Example Usage
 in a new rust project,
@@ -34,8 +34,6 @@ add the following to your main.rs file:
 <pre>
 #[macro_use]
 extern crate json_easy2use;
-extern crate serde_json;
-use serde_json::json;
 
 fn main() {
     let mut mydict = serde_json::json!({
