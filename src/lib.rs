@@ -2,6 +2,45 @@
 extern crate serde_json;
 
 #[macro_export]
+macro_rules! load {
+    ($map:expr, $path:expr) => {
+        {
+            use std::fs::File;
+            use std::io::Read;
+
+            // Open the file for reading
+            let mut file = File::open($path).expect("Failed to open file");
+
+            // Read the contents of the file into a string
+            let mut json_str = String::new();
+            file.read_to_string(&mut json_str).expect("Failed to read file");
+
+            // Parse the JSON string into a serde_json::Value and assign it to $map
+            $map = serde_json::from_str(&json_str).expect("Failed to parse JSON");
+        }
+    };
+}
+
+#[macro_export]
+macro_rules! save {
+    ($map:expr, $path:expr) => {
+        {
+            use std::fs::File;
+            use std::io::Write;
+
+            // Convert the JSON object to a string
+            let json_str = serde_json::to_string_pretty(&$map).expect("Failed to convert JSON to string");
+
+            // Open the file for writing
+            let mut file = File::create($path).expect("Failed to create file");
+
+            // Write the JSON string to the file
+            file.write_all(json_str.as_bytes()).expect("Failed to write to file");
+        }
+    };
+}
+
+#[macro_export]
 macro_rules! get {
     ($map:expr, $path:expr) => {
         {
