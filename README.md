@@ -54,13 +54,13 @@ fn main() {
     }
 
     // Using the `root_append` macro to add a new key-value pair at the root level
-    root_append!(mydict, serde_json::json!({"new_root_key": "new_root_value"}));
+    root_append!(mydict, json!({"new_root_key": "new_root_value"}));
 
     // Using the `set` macro to set a value at a specific path
     set!(mydict, "level1.level2.level4" => [1, 2, 3]);
 
     // Using the `append` macro to add a new key-value pair at a specific path
-    append!(mydict, "level1.level2" => serde_json::json!({"level5": "value_d"}));
+    append!(mydict, "level1.level2" => json!({"level5": "value_d"}));
 
     // Using the `delete` macro to remove a key-value pair at a specific path
     delete!(mydict, "level1.level2.level3b");
@@ -69,7 +69,6 @@ fn main() {
     println!("Output");
     println!("{}", mydict);
 }
-
 </pre>
 the output from this code is the following:
 <pre>
