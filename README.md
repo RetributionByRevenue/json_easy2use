@@ -25,10 +25,12 @@ get!(mydict, "level1.level2")
 
 `set!`, `append!`,`delete!`, `get!`, and `root_append!` are macros avalible to use.
 
-#Example Usage
+# Example Usage
+in a new rust project,
+
 enter commands `cargo add serde_json` and `cargo add json_easy2use`
 
-in a new rust project, add the following to your main.rs file
+add the following to your main.rs file:
 <pre>
 #[macro_use]
 extern crate json_easy2use;
