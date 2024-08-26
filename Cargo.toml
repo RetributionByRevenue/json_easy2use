@@ -1,0 +1,13 @@
+[package]
+name = "json_easy2use"
+version = "0.1.0"
+authors = ["Mark Ruff <markruffolocode@gmail.com>"]
+edition = "2024"
+description = "Work with json more easily like python's dict and javascript json. includes set, append, get, delete, and more... :)"
+homepage = "https://github.com/yourusername/json_easy2use"
+repository = "https://github.com/yourusername/json_easy2use"
+license = "MIT"
+documentation = "https://docs.rs/my_macros"
+
+[dependencies]
+serde_json = "1.0"
