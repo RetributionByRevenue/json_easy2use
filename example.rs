@@ -3,6 +3,27 @@
 #[macro_use]
 extern crate serde_json;
 
+macro_rules! exists {
+    ($map:expr, $path:expr) => {
+        {
+            let mut current = &$map;
+            let path_parts: Vec<&str> = $path.split('.').collect();
+            let mut found = true;
+
+            for key in path_parts {
+                if let Some(next) = current.get(key) {
+                    current = next;
+                } else {
+                    found = false;
+                    break;
+                }
+            }
+
+            found
+        }
+    };
+}
+
 macro_rules! load {
     ($map:expr, $path:expr) => {
         {
@@ -167,4 +188,10 @@ fn main() {
     delete!(mydict, "level1.level2.level3b");
 
     println!("{}", mydict);
+
+    if exists!(mydict, "level1.level2.level3b") {
+        println!("Key exists!");
+    } else {
+        println!("Key does not exist.");
+    }
 }
