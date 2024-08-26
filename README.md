@@ -44,7 +44,7 @@ fn main() {
     });
 
     // Using the `get` macro to retrieve a value
-    if let Some(value) = get!(mydict, "level1.level2.level3a") {
+    if let Some(value) = get!(mydict, "level1.level2") {
         println!("Found: {}", value);
     } else {
         println!("Not found");
