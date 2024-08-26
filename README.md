@@ -18,6 +18,9 @@ delete!(mydict, "level1.level2.level3b");
 
 // Append to root only
 root_append!(mydict, json!({"new_root_key": "new_root_value"}));
+
+//Getting a value
+get!(mydict, "level1.level2")
 </pre>
 
 `set!`, `append!`,`delete!`, `get!`, and `root_append!` are macros avalible to use.
