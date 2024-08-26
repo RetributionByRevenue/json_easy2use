@@ -26,6 +26,9 @@ root_append!(mydict, json!({"new_root_key": "new_root_value"}));
 //Getting a value
 get!(mydict, "level1.level2")
 
+//Checking a value
+exists!(mydict, "level1.level2.level3b")
+    
 //Loading a JSON file
 load!(mydict, "./test.db");
 
@@ -78,6 +81,12 @@ fn main() {
     // Using the `delete` macro to remove a key-value pair at a specific path
     delete!(mydict, "level1.level2.level3b");
 
+    if exists!(mydict, "level1.level2.level3b") {
+        println!("Key exists!");
+    } else {
+        println!("Key does not exist.");
+    }
+
     // Print the final JSON structure
     println!("Output");
     println!("{}", mydict);
@@ -95,6 +104,8 @@ Found: {
   "level3c": "value_c"
 }
 
+Key does not exist.
+    
 Output:
 {
   "level1": {
