@@ -1,6 +1,6 @@
 [package]
 name = "json_easy2use"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Mark Ruff <markruffolocode@gmail.com>"]
 edition = "2024"
 description = "Work with json more easily like python's dict and javascript json. includes set, append, get, delete, and more... :)"
