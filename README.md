@@ -6,6 +6,20 @@ Use Rust's JSON more easily like python's dict and javascript JSON. includes set
 I made a series of custom macro's for Rust's Serde JSON crate. This will make it easier to work with JSON if you are familiar with Python or JavaScript. 
 
 <ol>
+
+  <li>
+    <strong>query_key_pair!</strong>
+    <p>Finds the path to a key-value pair in a JSON-like structure. Key is string. Value is string or complex JSON value.</p>
+    <li>Returns: <code>String</code> (path to the parent object) or <code>"Null"</code> if not found.</li>
+    <ul>
+      <li><code>query_key_pair!(mydict, "key" => "value");</code></li>
+      <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
+      <li>Returns: <code>String</code> (path to the value) or <code>"Null"</code> if not found.</li>
+    </ul>
+  </li>
+<br>
+
+  
   <li>
     <strong>print_pretty!</strong>
     <p>Pretty-prints a JSON-like structure in a formatted way.</p>
@@ -36,16 +50,7 @@ I made a series of custom macro's for Rust's Serde JSON crate. This will make it
     </ul>
   </li>
   <br>
-  <li>
-    <strong>query_key_pair!</strong>
-    <p>Finds the path to a key-value pair in a JSON-like structure. Key is string. Value is string or complex JSON value.</p>
-    <li>Returns: <code>String</code> (path to the parent object) or <code>"Null"</code> if not found.</li>
-    <ul>
-      <li><code>query_key_pair!(mydict, "key" => "value");</code></li>
-      <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
-      <li>Returns: <code>String</code> (path to the value) or <code>"Null"</code> if not found.</li>
-    </ul>
-  </li>
+
   <br>
   <li>
     <strong>query_value!</strong>
