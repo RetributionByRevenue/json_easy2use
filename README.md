@@ -124,12 +124,6 @@ I made a series of custom macro's for Rust's Serde JSON crate. This will make it
   </li>
 </ol>
 
-
-`set!`, `append!`,`delete!`, `get!`, and `root_append!` are macros avalible to use. <br>
-Drill down to a specifc key-value entery like `level1.level2.level3b` for easy usage. <br>
-Now supporting pseudo database like functionality with `load!` and `save!`. 
-
-
 # Example Usage
 in a new rust project,
 
