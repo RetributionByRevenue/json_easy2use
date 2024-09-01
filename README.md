@@ -7,16 +7,15 @@ I made a series of custom macro's for Rust's Serde JSON crate. This will make it
 
 <ol>
 
-  <li>
-    <strong>query_key_pair!</strong>
-    <p>Finds the path to a key-value pair in a JSON-like structure. Key is string. Value is string or complex JSON value.</p>
+<li>
+  <strong>query_key_pair!</strong>
+  <p>Finds the path to a key-value pair in a JSON-like structure. The key is a string, and the value can be either a string or a complex JSON value.</p>
+  <ul>
+    <li><code>query_key_pair!(mydict, "key" => "value");</code></li>
+    <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
     <li>Returns: <code>String</code> (path to the parent object) or <code>"Null"</code> if not found.</li>
-    <ul>
-      <li><code>query_key_pair!(mydict, "key" => "value");</code></li>
-      <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
-      <li>Returns: <code>String</code> (path to the value) or <code>"Null"</code> if not found.</li>
-    </ul>
-  </li>
+  </ul>
+</li>
 <br>
 
   
