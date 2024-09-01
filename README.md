@@ -17,7 +17,7 @@ I made a series of custom macro's for Rust's Serde JSON crate. This will make it
   <br>
   <li>
     <strong>ensure_exist_with_schema!</strong>
-    <p>Checks if a file exists, and if it does, checks if the schema exists inside it.</p>
+    <p>Checks if a file exists, and if it does, checks if the schema exists inside it. If it dose not exist, it will make the file with the JSON specified.</p>
     <ul>
       <li><code>ensure_exist_with_schema!("test.db", serde_json::json!({"key": "value"}));</code></li>
       <li>Expects: <code>&str, serde_json::Value</code></li>
@@ -35,7 +35,7 @@ I made a series of custom macro's for Rust's Serde JSON crate. This will make it
   <br>
   <li>
     <strong>query_key_pair!</strong>
-    <p>Finds the path to a key-value pair in a JSON-like structure.</p>
+    <p>Finds the path to a key-value pair in a JSON-like structure. Key is string. Value is string or complex JSON value.</p>
     <ul>
       <li><code>query_key_pair!(mydict, "key" => "value");</code></li>
       <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
@@ -44,7 +44,7 @@ I made a series of custom macro's for Rust's Serde JSON crate. This will make it
   <br>
   <li>
     <strong>query_value!</strong>
-    <p>Searches for a specific value in a JSON-like structure and returns its path.</p>
+    <p>Searches for a specific value in a JSON-like structure and returns its path. Value is string or complex JSON value.</p>
     <ul>
       <li><code>query_value!(mydict, "value");</code></li>
       <li>Expects: <code>serde_json::Value, &str or serde_json::Value</code></li>
