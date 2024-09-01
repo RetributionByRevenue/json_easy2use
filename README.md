@@ -5,36 +5,125 @@ Use Rust's JSON more easily like python's dict and javascript JSON. includes set
 # How this works?
 I made a series of custom macro's for Rust's Serde JSON crate. This will make it easier to work with JSON if you are familiar with Python or JavaScript. 
 
-# Now added support for Saving and Loading <3
+<ol>
+  <li>
+    <strong>print_pretty!</strong>
+    <p>Pretty-prints a JSON-like structure in a formatted way.</p>
+    <ul>
+      <li><code>print_pretty!(mydict);</code></li>
+      <li>Expects: <code>serde_json::Value</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>ensure_exist_with_schema!</strong>
+    <p>Checks if a file exists, and if it does, checks if the schema exists inside it.</p>
+    <ul>
+      <li><code>ensure_exist_with_schema!("test.db", serde_json::json!({"key": "value"}));</code></li>
+      <li>Expects: <code>&str, serde_json::Value</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>ensure_exist!</strong>
+    <p>Ensures that a file exists by creating it if it doesn't.</p>
+    <ul>
+      <li><code>ensure_exist!("data.db");</code></li>
+      <li>Expects: <code>&str</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>query_key_pair!</strong>
+    <p>Finds the path to a key-value pair in a JSON-like structure.</p>
+    <ul>
+      <li><code>query_key_pair!(mydict, "key" => "value");</code></li>
+      <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>query_value!</strong>
+    <p>Searches for a specific value in a JSON-like structure and returns its path.</p>
+    <ul>
+      <li><code>query_value!(mydict, "value");</code></li>
+      <li>Expects: <code>serde_json::Value, &str or serde_json::Value</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>exists!</strong>
+    <p>Checks if a specific key or value exists in a JSON-like structure.</p>
+    <ul>
+      <li><code>exists!(mydict, "key");</code></li>
+      <li>Expects: <code>serde_json::Value, &str</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>load!</strong>
+    <p>Loads a JSON-like structure from a file.</p>
+    <ul>
+      <li><code>let mydict = load!("data.json");</code></li>
+      <li>Expects: <code>&str</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>save!</strong>
+    <p>Saves a JSON-like structure to a file.</p>
+    <ul>
+      <li><code>save!(mydict, "data.json");</code></li>
+      <li>Expects: <code>serde_json::Value, &str</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>get!</strong>
+    <p>Retrieves a value from a JSON-like structure by its path.</p>
+    <ul>
+      <li><code>let value = get!(mydict, "key.subkey");</code></li>
+      <li>Expects: <code>serde_json::Value, &str</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>root_append!</strong>
+    <p>Appends a key-value pair to the root of a JSON-like structure.</p>
+    <ul>
+      <li><code>root_append!(mydict, "new_key" => "new_value");</code></li>
+      <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>set!</strong>
+    <p>Sets a value in a JSON-like structure by its path.</p>
+    <ul>
+      <li><code>set!(mydict, "key.subkey", "new_value");</code></li>
+      <li>Expects: <code>serde_json::Value, &str, serde_json::Value</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>append!</strong>
+    <p>Appends a value to an array within a JSON-like structure.</p>
+    <ul>
+      <li><code>append!(mydict, "key.array", "new_value");</code></li>
+      <li>Expects: <code>serde_json::Value, &str, serde_json::Value</code></li>
+    </ul>
+  </li>
+  <br>
+  <li>
+    <strong>delete!</strong>
+    <p>Deletes a key or value from a JSON-like structure by its path.</p>
+    <ul>
+      <li><code>delete!(mydict, "key.subkey");</code></li>
+      <li>Expects: <code>serde_json::Value, &str</code></li>
+    </ul>
+  </li>
+</ol>
 
-Let's take a look how this works. 
-
-consider the following:
-<pre>
-// Setting values
-set!(mydict, "level1.level2.level4" => [1,2,3]);
-
-// Appending values
-append!(mydict, "level1.level2" => json!({"level5": "value_d"}));
-
-// Deleting values
-delete!(mydict, "level1.level2.level3b");
-
-// Append to root only
-root_append!(mydict, json!({"new_root_key": "new_root_value"}));
-
-//Getting a value
-get!(mydict, "level1.level2")
-
-//Checking a value
-exists!(mydict, "level1.level2.level3b")
-    
-//Loading a JSON file
-load!(mydict, "./test.db");
-
-//Saving a JSON file
-save!(mydict, "./test.db");
-</pre>
 
 `set!`, `append!`,`delete!`, `get!`, and `root_append!` are macros avalible to use. <br>
 Drill down to a specifc key-value entery like `level1.level2.level3b` for easy usage. <br>
