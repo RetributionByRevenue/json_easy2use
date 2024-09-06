@@ -13,7 +13,9 @@ let result = exist_same_level!(mydict,
       "packet_type" => packet_type,
       "source_ip" => source_ip
 );
-</pre><br>
+</pre>
+Changed Macros to return `None` instead of a string `"None"` or `"Null"`. I want to avoid unnecessarily working with strings as a return unless it makes sense too.
+<br>
 
 # Macro Collection
 <ol>
@@ -28,6 +30,16 @@ let result = exist_same_level!(mydict,
 </li>
 <br>
 
+<li>
+  <strong>exist_same_level!</strong>
+  <p>Checks if all provided key-value pairs exist at the same level in a JSON-like structure.</p>
+  <ul>
+    <li><code>exist_same_level!(mydict, "destination_ip" => destination_ip, "packet_type" => packet_type);</code>Can support up to 9 arguments.</li>
+    <li>Expects: <code>serde_json::Value, &str => serde_json::Value</code></li>
+    <li>Returns: <code>String</code> (path to the parent object) or <code>None</code> if not found.</li>
+  </ul>
+</li>
+<br>
   
   <li>
     <strong>print_pretty!</strong>
