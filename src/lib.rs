@@ -2,7 +2,54 @@
 extern crate serde_json;
 
 #[macro_export]
+macro_rules! exist_same_level {
+    ($map:expr, $($key:expr => $value:expr),+) => {
+        {
+            fn search_level(json: &serde_json::Value, pairs: &[(&str, serde_json::Value)], path: &str) -> Option<String> {
+                match json {
+                    serde_json::Value::Object(map) => {
+                        // Check if all key-value pairs are present at this level
+                        let all_pairs_exist = pairs.iter().all(|(key, value)| {
+                            map.get(*key) == Some(value)
+                        });
+                        if all_pairs_exist {
+                            return Some(path.to_string());
+                        }
 
+                        for (k, v) in map {
+                            let current_path = if path.is_empty() {
+                                k.clone()
+                            } else {
+                                format!("{}.{}", path, k)
+                            };
+                            
+                            if let Some(result) = search_level(v, pairs, &current_path) {
+                                return Some(result);
+                            }
+                        }
+                    }
+                    serde_json::Value::Array(arr) => {
+                        for (index, item) in arr.iter().enumerate() {
+                            let current_path = format!("{}[{}]", path, index);
+                            if let Some(result) = search_level(item, pairs, &current_path) {
+                                return Some(result);
+                            }
+                        }
+                    }
+                    _ => {}
+                }
+                None
+            }
+            // Collect the key-value pairs into a vector of owned values
+            let key_value_pairs = vec![$(($key, serde_json::json!($value))),+];
+            
+            // Start searching from the root of the provided map
+            search_level(&$map, &key_value_pairs, "")
+        }
+    };
+}
+
+#[macro_export]
 macro_rules! print_pretty {
     ($value:expr) => {
         {
@@ -14,7 +61,7 @@ macro_rules! print_pretty {
     };
 }
 
-
+#[macro_export]
 macro_rules! ensure_exist_with_schema {
     ($file_path:expr, $schema:expr) => {
         {
@@ -70,7 +117,7 @@ macro_rules! ensure_exist_with_schema {
     };
 }
 
-
+#[macro_export]
 macro_rules! ensure_exist {
     ($file_path:expr) => {
         {
@@ -91,7 +138,7 @@ macro_rules! ensure_exist {
     };
 }
 
-
+#[macro_export]
 macro_rules! query_key_pair {
     ($map:expr, $key:expr => $value:expr) => {
         {
@@ -142,7 +189,7 @@ macro_rules! query_key_pair {
 
 
 
-
+#[macro_export]
 macro_rules! query_value {
     ($map:expr, $value:expr) => {
         {
@@ -186,7 +233,7 @@ macro_rules! query_value {
 
 
 
-
+#[macro_export]
 macro_rules! exists {
     ($map:expr, $path:expr) => {
         {
@@ -208,7 +255,7 @@ macro_rules! exists {
     };
 }
 
-
+#[macro_export]
 macro_rules! load {
     ($map:expr, $path:expr) => {
         {
