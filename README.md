@@ -5,8 +5,18 @@ Use Rust's JSON more easily like python's dict and javascript JSON. includes set
 # How this works?
 I made a series of custom macro's for Rust's Serde JSON crate. This will make it easier to work with JSON if you are familiar with Python or JavaScript. 
 
-<ol>
+# Changelog 0.2.9
+I added a macro exist_same_level!, for determining if multiple key-pairs exist on the same level. 
+<pre>
+let result = exist_same_level!(mydict,
+      "destination_ip" => destination_ip,
+      "packet_type" => packet_type,
+      "source_ip" => source_ip
+);
+</pre><br>
 
+# Macro Collection
+<ol>
 <li>
   <strong>query_key_pair!</strong>
   <p>Finds the path to a key-value pair in a JSON-like structure. The key is a string, and the value can be either a string or a complex JSON value.</p>
